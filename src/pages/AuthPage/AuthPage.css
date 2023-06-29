@@ -48,6 +48,27 @@ input::placeholder {
     color: rgb(166, 166, 166);
 }
 
+.input-group {
+    position: relative;
+}
+
+.input-field {
+    padding-left: 30px;
+}
+
+.icon {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    pointer-events: none;  
+    color: rgb(166, 166, 166);
+}
+
+.input-group.active .icon {
+    color: rgb(255, 255, 255);
+}
+
 p.error-message {
     color: var(--orange);
     text-align: center;
