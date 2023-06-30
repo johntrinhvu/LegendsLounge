@@ -1,13 +1,116 @@
 .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 280px;
+    height: 100%;
+    background: rgb(28, 47, 84);
+    z-index: 2000;
+    overflow-x: hidden;
+    scrollbar-width: none;
     color: white;
-}
-
-.sidebar-home {
     text-decoration: none;
 }
 
-.sidebar-legends-lounge {
+.sidebar::--webkit-scrollbar {
+    display: none;
+}
+
+.brand {
     color: rgb(232, 207, 16);
+    text-decoration: none;
+    font-size: 24px;
+    font-weight: 700;
     font-family: 'Beaufort for LOL';
-    font-size: 25px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.side-menu {
+    width: 100%;
+    margin-top: 48px;
+    list-style: none;
+}
+
+.side-menu li {
+    height: 48px;
+    background: transparent;
+    margin-left: -35px;
+    border-radius: 48px 0 0 48px;
+    padding: 4px;
+}
+
+.side-menu li.active {
+    background: rgb(14, 30, 46);
+    position: relative;
+}
+
+.side-menu li.active::before {
+    content: '';
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    top: -40px;
+    right: 0;
+    box-shadow: 20px 20px 0 rgb(14, 30, 46);
+    z-index: -1;
+}
+
+.side-menu li.active::after {
+    content: '';
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    bottom: -40px;
+    right: 0;
+    box-shadow: 20px -20px 0 rgb(14, 30, 46);
+    z-index: -1;
+}
+
+.side-menu li a {
+    text-decoration: none;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    background: rgb(32, 46, 81);
+    align-items: center;
+    border-radius: 48px;
+    color: white;
+}
+
+.side-menu.top li a:hover span {
+    color: rgb(232, 207, 16);
+}
+
+.side-menu.top li.active a span {
+    color: rgb(232, 207, 16);
+}
+
+.side-menu li a.logout-link:hover {
+    color: rgb(237, 112, 107);
+}
+
+.home-icon,
+.logout-icon {
+    min-width: calc(60px - ((4px + 6px) * 2));
+    display: flex;
+    justify-content: center;
+    font-size: 16px;
+}
+
+.top-lane-icon,
+.jungle-icon,
+.mid-lane-icon,
+.adc-icon,
+.support-icon {
+    min-width: 10px;
+    padding-left: 12px;
+    padding-right: 10px;
+    display: flex;
+    justify-content: center;
+    font-size: 16px;
 }
