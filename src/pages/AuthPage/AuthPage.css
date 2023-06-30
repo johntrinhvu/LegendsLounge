@@ -1,3 +1,32 @@
+main {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    -webkit-box-align: center;
+    align-items: center;
+    width: 100%;
+    padding: 0px 20px 40px;
+}
+
+.signup-rectangle {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    width: 100%;
+    max-width: 320px;
+    flex: 1 1 320px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+}
+
 .column {
     display: flex;
     justify-content: center;
@@ -70,25 +99,17 @@ input::placeholder {
 }
 
 p.error-message {
-    color: var(--orange);
+    color: red;
     text-align: center;
 }
 
-button {
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
-}
 
-button, a.button {
+button {
     margin: 1vmin;
     padding: 1vmin;
-    color: var(--white);
-    background-color: #007bff;
-    font-size: 2vmin;
+    color: rgb(0, 0, 0);
+    background-color: rgb(232, 207, 16);
+    font-size: 14px;
     font-weight: bold;
     text-decoration: none;
     text-align: center;
@@ -98,22 +119,88 @@ button, a.button {
     cursor: pointer;
 }
 
-button.btn-sm {
-    font-size: 1.5vmin;
-    padding: .6vmin .8vmin;
-}
-
-button.btn-xs {
-    font-size: 1vmin;
-    padding: .4vmin .5vmin;
-}
-
 button:disabled, form:invalid button[type="submit"] {
     cursor: not-allowed;
-    background-color: var(--tan-4);
+    background-color: rgb(201, 201, 179);
 }
 
 button[type="submit"] {
     grid-column: span 2;
     margin: 1vmin 0 0;
 }
+
+.tabs {
+    display: flex;
+    align-items: flex-end;
+    -webkit-box-pack: start;
+    justify-content: flex-start;
+    position: relative;
+    width: 100%;
+}
+
+.hyper-link {
+    white-space: nowrap;
+    flex: 0 1 auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.tab-login,
+.tab-signup {
+    text-decoration: none;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    font: 20px Roboto, sans-serif;
+    font-weight: bold;
+    letter-spacing: 0.015rem;
+    padding: 10px 24px 14px;
+    color: rgb(166, 166, 166);
+    flex: 1 1 auto;
+    -webkit-box-pack: center;
+    justify-content: center;
+}
+
+.tab-login:hover,
+.tab-signup:hover {
+    color: rgb(232, 207, 16);
+}
+
+.tab-login.active,
+.tab-signup.active {
+    color: rgb(232, 207, 16);
+}
+
+.tab-login.active::before,
+.tab-signup.active::before {
+    content: "";
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    height: 1px;
+    background: rgb(18, 30, 45);
+}
+
+.tab-login.active::after,
+.tab-signup.active::after {
+    content: "";
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    height: 4px;
+    background: rgb(232, 207, 16);
+}
+
+/* .wallpaper {
+    background-image: url(https://universe-meeps.leagueoflegends.com/v1/assets/images/aphelios-splash.jpg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 100%;
+    width: 100%;
+} */
