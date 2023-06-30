@@ -1,0 +1,13 @@
+.sidebar {
+    color: white;
+}
+
+.sidebar-home {
+    text-decoration: none;
+}
+
+.sidebar-legends-lounge {
+    color: rgb(232, 207, 16);
+    font-family: 'Beaufort for LOL';
+    font-size: 25px;
+}
