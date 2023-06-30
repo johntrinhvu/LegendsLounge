@@ -1,4 +1,4 @@
-main {
+.auth-page-main {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -20,22 +20,23 @@ main {
     flex: 1 1 320px;
 }
 
-.container {
+.auth-page-container {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    align-items: center;
     width: 100%;
+    gap: 15px;
 }
 
-.column {
+.auth-page-form-column {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     width: 100%;
     height: 100%;
 }
 
-.form-container {
+.auth-form-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -47,13 +48,13 @@ main {
     text-align: center;
 }
 
-.actForm {
+.auth-form {
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
 
-input {
+.auth-input-field {
     font: bold 14px sans-serif;
     border-radius: 6px;
     padding: 9px 12px 9px 10px;
@@ -65,27 +66,27 @@ input {
     border-color: rgb(59, 99, 150);
     color: rgb(255, 255, 255);
     outline: none;
-    width: 300px;
+    width: 324px;
 }
 
-input:focus, input:hover {
+.auth-input-field:focus, .auth-input-field:hover {
     border-color: rgb(232, 207, 16);
     background-color: rgb(37, 54, 77);
 }
 
-input::placeholder {
+.auth-input-field::placeholder {
     color: rgb(166, 166, 166);
 }
 
-.input-group {
+.auth-input-group {
     position: relative;
 }
 
-.input-field {
+.auth-input-field {
     padding-left: 30px;
 }
 
-.icon {
+.auth-icon {
     position: absolute;
     top: 50%;
     left: 10px;
@@ -94,17 +95,18 @@ input::placeholder {
     color: rgb(166, 166, 166);
 }
 
-.input-group.active .icon {
+.auth-input-group.active .auth-icon {
     color: rgb(255, 255, 255);
 }
 
-p.error-message {
-    color: red;
+.error-message {
+    color: rgb(209, 82, 132);
     text-align: center;
+    font-size: 14px;
 }
 
 
-button {
+.auth-button {
     margin: 1vmin;
     padding: 1vmin;
     color: rgb(0, 0, 0);
@@ -119,17 +121,17 @@ button {
     cursor: pointer;
 }
 
-button:disabled, form:invalid button[type="submit"] {
+.auth-button:disabled, form:invalid button[type="submit"] {
     cursor: not-allowed;
-    background-color: rgb(201, 201, 179);
+    background-color: rgb(137, 106, 36);
 }
 
-button[type="submit"] {
+.auth-button[type="submit"] {
     grid-column: span 2;
     margin: 1vmin 0 0;
 }
 
-.tabs {
+.auth-tabs {
     display: flex;
     align-items: flex-end;
     -webkit-box-pack: start;
@@ -138,7 +140,7 @@ button[type="submit"] {
     width: 100%;
 }
 
-.hyper-link {
+.auth-hyper-link {
     white-space: nowrap;
     flex: 0 1 auto;
     overflow: hidden;
@@ -151,14 +153,14 @@ button[type="submit"] {
     display: flex;
     -webkit-box-align: center;
     align-items: center;
-    gap: 8px;
+    gap: 2px;
     cursor: pointer;
     position: relative;
     overflow: hidden;
-    font: 20px Roboto, sans-serif;
+    font: 16px Roboto, sans-serif;
     font-weight: bold;
     letter-spacing: 0.015rem;
-    padding: 10px 24px 14px;
+    padding: 10px 24px 10px;
     color: rgb(166, 166, 166);
     flex: 1 1 auto;
     -webkit-box-pack: center;
@@ -192,7 +194,7 @@ button[type="submit"] {
     position: absolute;
     left: 0px;
     right: 0px;
-    bottom: 0px;
+    bottom: 3px;
     height: 4px;
     background: rgb(232, 207, 16);
 }

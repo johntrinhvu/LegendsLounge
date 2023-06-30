@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Link } from 'react-router-dom';
 import { getUser } from '../../utilities/users-service';
 import './App.css';
 import AuthPage from '../AuthPage/AuthPage';
@@ -12,7 +12,7 @@ export default function App() {
 
   return (
     <main className="App">
-      { user ?
+      { user ? (
           <>
             <NavBar user={user} setUser={setUser} />
             <Routes>
@@ -21,9 +21,22 @@ export default function App() {
               <Route path="/orders" element={<OrderHistoryPage />} />
             </Routes>
           </>
-          :
-          <AuthPage setUser={setUser} />
-      }
+      ) : (
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <div className="MainPage">
+                <h1>Welcome to My App!</h1>
+                <p>
+                  Click <Link to="/credentials">here</Link> to sign up.
+                </p>
+              </div>
+            }
+          />
+          <Route path="/credentials" element={<AuthPage setUser={setUser} />} />
+        </Routes>
+      )}
     </main>
   );
 }

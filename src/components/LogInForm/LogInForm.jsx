@@ -7,7 +7,7 @@ export default function LogInForm({ setUser }) {
     email: '',
     password: ''
   });
-  
+
   const [error, setError] = useState('');
 
   function handleChange(evt) {
@@ -16,7 +16,7 @@ export default function LogInForm({ setUser }) {
   }
 
   const generateClassName = (value) => {
-    return `input-group ${value !== '' ? 'active' : ''}`;
+    return `auth-input-group ${value !== '' ? 'active' : ''}`;
 
   }
 
@@ -32,21 +32,21 @@ export default function LogInForm({ setUser }) {
 
   return (
     <>
-      <div className="column">
-        <div className="form-container">
-          <form autoComplete="off" onSubmit={handleSubmit} className="actForm">
+      <div className="auth-page-form-column">
+        <div className="auth-form-container">
+          <form autoComplete="off" onSubmit={handleSubmit} className="auth-form">
             <div className={generateClassName(credentials.email)}>
-              <AiOutlineMail className="icon" />
-              <input type="text" name="email" placeholder="Email" value={credentials.email} onChange={handleChange} required className="input-field" />
+              <AiOutlineMail className="auth-icon" />
+              <input type="text" name="email" placeholder="Email" value={credentials.email} onChange={handleChange} required className="auth-input-field" />
             </div>
             <div className={generateClassName(credentials.password)}>
-              <AiOutlineLock className="icon" />
-              <input type="password" name="password" placeholder="Password" value={credentials.password} onChange={handleChange} required className="input-field" />
+              <AiOutlineLock className="auth-icon" />
+              <input type="password" name="password" placeholder="Password" value={credentials.password} onChange={handleChange} required className="auth-input-field" />
             </div>
-            <button type="submit">LOG IN</button>
+            <button type="submit" className="auth-button">LOG IN</button>
+            <p className="error-message">&nbsp;{error}</p>
           </form>
         </div>
-        <p className="error-message">&nbsp;{error}</p>
       </div>
     </>
   );

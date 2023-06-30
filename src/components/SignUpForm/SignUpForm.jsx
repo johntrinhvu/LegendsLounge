@@ -19,7 +19,7 @@ export default class SignUpForm extends Component {
   };
 
   generateClassName = (value) => {
-    return `input-group ${value !== '' ? 'active' : ''}`;
+    return `auth-input-group ${value !== '' ? 'active' : ''}`;
   }
 
   handleSubmit = async (evt) => {
@@ -40,30 +40,30 @@ export default class SignUpForm extends Component {
 
     return (
       <>
-        <div className="column">
-          <div className="form-container">
-            <form autoComplete="off" onSubmit={this.handleSubmit} className="actForm">
+        <div className="auth-page-form-column">
+          <div className="auth-form-container">
+            <form autoComplete="off" onSubmit={this.handleSubmit} className="auth-form">
               <div className={this.generateClassName(name)}>
-                <AiOutlineUser className="icon"/>
-                <input type="text" name="name" placeholder="Username" value={this.state.name} onChange={this.handleChange} required className="input-field" />
+                <AiOutlineUser className="auth-icon"/>
+                <input type="text" name="name" placeholder="Username" value={this.state.name} onChange={this.handleChange} required className="auth-input-field" />
               </div>
               <div className={this.generateClassName(email)}>
-                <AiOutlineMail className="icon" />
-                <input type="email" name="email" placeholder="Email" value={this.state.email} onChange={this.handleChange} required className="input-field" />
+                <AiOutlineMail className="auth-icon" />
+                <input type="email" name="email" placeholder="Email" value={this.state.email} onChange={this.handleChange} required className="auth-input-field" />
               </div>
               <div className={this.generateClassName(password)}>
-                <AiOutlineLock className="icon" />
-                <input type="password" name="password" placeholder="Password" value={this.state.password} onChange={this.handleChange} required className="input-field" />
+                <AiOutlineLock className="auth-icon" />
+                <input type="password" name="password" placeholder="Password" value={this.state.password} onChange={this.handleChange} required className="auth-input-field" />
               </div>
               <div className={this.generateClassName(confirm)}>
-                <AiOutlineLock className="icon" />
-                <input type="password" name="confirm" placeholder="Confirm Password" value={this.state.confirm} onChange={this.handleChange} required className="input-field" />
+                <AiOutlineLock className="auth-icon" />
+                <input type="password" name="confirm" placeholder="Confirm Password" value={this.state.confirm} onChange={this.handleChange} required className="auth-input-field" />
               </div>
-              <button type="submit" disabled={disable}>SIGN UP</button>
+              <button type="submit" disabled={disable} className="auth-button">SIGN UP</button>
+              <p className="error-message">&nbsp;{this.state.error}</p>
             </form>
           </div>
         </div>
-        <p className="error-message">&nbsp;{this.state.error}</p>
       </>
     );
   }

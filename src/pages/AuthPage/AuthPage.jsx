@@ -11,23 +11,23 @@ export default function AuthPage({ setUser }) {
   }
 
   return (
-    <main>
+    <main className="auth-page-main">
       <div className="signup-rectangle">
-        <div className="container">
-          <div className="tabs" role="tablist">
+        <div className="auth-page-container">
+          <div className="auth-tabs" role="tablist">
             <span 
               className={`tab-login ${activeTab === 'login' ? 'active' : ''}`} 
               role="tab" 
               onClick={() => handleTabClick('login')}
             >
-              <p className="hyper-link">Log in</p>
+              <p className="auth-hyper-link">Log in</p>
             </span>
             <span 
               className={`tab-signup ${activeTab === 'signup' ? 'active' : ''}`}
               role="tab" 
               onClick={() => handleTabClick('signup')}
             >
-              <p className="hyper-link">Sign up</p>  
+              <p className="auth-hyper-link">Sign up</p>  
             </span>
           </div>
           
