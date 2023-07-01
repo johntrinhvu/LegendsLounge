@@ -5,24 +5,23 @@ module.exports = {
 };
 
 async function create(req, res) {
-    const { category, title, content, user } = req.body;
-    try {
-        const newPost = await Post.create({
-            category,
-            title,
-            content,
-            user
-        });
+    console.log(req.body); // Log the request payload
+    const { category, title, content } = req.body;
+    const { _id, name } = req.user;
 
-        const savedPost = await newPost.save();
-        res.json(savedPost);
+    try {
+      const newPost = await Post.create({ 
+        category: category,
+        title: title,
+        content: content,
+        user: { _id, name }
+      });
+      res.json(newPost);
 
     } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: 'Failed to create a new post' });
-
+      console.error(error);
+      res.status(500).json({ message: 'Error creating post' });
     }
-
+}
     // const post = await Post.create({ text: req.body.text })
     // res.json(post)
-}

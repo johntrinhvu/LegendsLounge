@@ -30,7 +30,7 @@ export default function App() {
                 <Routes>
                   {/* Route components in here */}
                   <Route path="/home" element={<HomePage />} />
-                  <Route path="/posts/new" element={<NewPostPage user={user} setUser={setUser} />} />
+                  <Route path="/posts/new" element={<NewPostPage user={user} />} />
                   <Route path="/top" element={<TopPage />} />
                   <Route path="/jungle" element={<JunglePage />}></Route>
                   <Route path="/mid" element={<MidPage />}></Route>

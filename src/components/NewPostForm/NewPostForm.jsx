@@ -6,6 +6,7 @@ export default class SignUpForm extends Component {
     category: '',
     title: '',
     content: '',
+    user: this.props.user,
     error: ''
   };
 
@@ -18,22 +19,19 @@ export default class SignUpForm extends Component {
   
   handleSubmit = async (evt) => {
     evt.preventDefault();
-    const { category, title, content } = this.state;
-    // Perform validation if needed
-    if (!category || !title || !content) {
-        // Handle validation error
-        return;
-    }
+    const { category, title, content, user } = this.state;
 
     try {
-        // retrieve user
-        const { user } = this.props;
-        const postData = { category, title, content, user };
-        const createdPost = await postsAPI.createPost(postData);
-        const successMessage = createdPost.message;
-        console.log(createdPost);
-        alert(JSON.stringify(createdPost));
-        console.log(successMessage);
+        const postData = { 
+          category, 
+          title, 
+          content, 
+          user: {
+            name: user.name,
+            _id: user._id
+          } 
+        };
+        await postsAPI.createPost(postData);
 
         this.setState({
             category: '',

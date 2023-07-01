@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
-import * as userService from '../../utilities/users-service';
+// import * as userService from '../../utilities/users-service';
 import { AiOutlineSearch, AiOutlineUser } from 'react-icons/ai';
 import { IoAddCircleOutline } from 'react-icons/io5';
 import './NavBar.css';
