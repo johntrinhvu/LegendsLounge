@@ -1,6 +1,5 @@
 import { Component } from 'react';
 import { signUp } from '../../utilities/users-service';
-import { useNavigate } from 'react-router-dom';
 import { AiOutlineUser, AiOutlineMail, AiOutlineLock } from 'react-icons/ai';
 
 export default class SignUpForm extends Component {

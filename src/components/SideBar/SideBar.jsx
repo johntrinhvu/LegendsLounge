@@ -35,6 +35,7 @@ export default function SideBar({ user, setUser }) {
                         <span className="sidebar-text">Home</span>
                     </Link>
                 </li>
+                <li className="sidebar-separator"></li>
                 <li className={getSidebarClassName('top')}>
                     <Link to="/top" className="sidebar-top-lane" onClick={() => handleSidebarClick('top')}>
                         <img src="https://cdn.mobalytics.gg/assets/common/icons/lol-roles/16-top-bright.svg" alt="Top" loading="lazy" className="top-lane-icon"></img>
