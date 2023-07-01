@@ -20,8 +20,8 @@ export default function App() {
     <main className="App">
       { user ? (
           <>
-            <SideBar />
-            {/* <NavBar /> */}
+            <SideBar user={user} setUser={setUser} />
+            <NavBar user={user} setUser={setUser} />
             <Routes>
               {/* Route components in here */}
               <Route path="/post/new" element={<NewPostPage />} />
