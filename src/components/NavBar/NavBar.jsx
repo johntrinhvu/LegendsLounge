@@ -28,7 +28,7 @@ export default function NavBar({ user, setUser }) {
             </button>
           </form>
           <span className="add-post-button">
-            <Link to="/post/new" className="new-post-hyperlink">
+            <Link to="/posts/new" className="new-post-hyperlink">
               <IoAddCircleOutline className="new-post-button" />
               <span className="new-post-text">New Post</span>
             </Link>

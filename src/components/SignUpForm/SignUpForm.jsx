@@ -35,13 +35,13 @@ export default class SignUpForm extends Component {
     } 
   };
 
-  handleSubmit= async (evt) => {
+  handleSubmit = async (evt) => {
     evt.preventDefault();
     this.handleSignupOrLogin();
   };
 
   render() {
-    const { name, email, password, confirm } = this.state
+    const { name, email, password, confirm } = this.state;
     const disable = this.state.password !== this.state.confirm;
 
     return (

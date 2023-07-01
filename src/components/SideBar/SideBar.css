@@ -42,10 +42,6 @@
     flex-grow: 1;
 }
 
-ul.side-menu:last-child {
-    /* margin-top: 425px; */
-}
-
 .side-menu li {
     height: 48px;
     background: transparent;

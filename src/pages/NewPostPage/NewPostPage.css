@@ -1,0 +1,14 @@
+.new-post-page-header {
+    color: white;
+    font-size: 30px;
+}
+
+.new-post-form-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.new-post-form-group {
+    margin-bottom: 10px;
+}
