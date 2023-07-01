@@ -17,17 +17,22 @@ export default function LogInForm({ setUser }) {
 
   const generateClassName = (value) => {
     return `auth-input-group ${value !== '' ? 'active' : ''}`;
-
   }
 
-  async function handleSubmit(evt) {
-    evt.preventDefault();
+  const handleSignupOrLogin = async () => {
     try {
       const user = await usersService.login(credentials);
       setUser(user);
+      // redirect to home page
+      window.location.href = '/home';
     } catch {
       setError('Log In Failed - Try Again');
     }
+  };
+
+  function handleSubmit(evt) {
+    evt.preventDefault();
+    handleSignupOrLogin();
   }
 
   return (

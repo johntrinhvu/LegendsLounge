@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import { signUp } from '../../utilities/users-service';
+import { useNavigate } from 'react-router-dom';
 import { AiOutlineUser, AiOutlineMail, AiOutlineLock } from 'react-icons/ai';
 
 export default class SignUpForm extends Component {
@@ -22,16 +23,22 @@ export default class SignUpForm extends Component {
     return `auth-input-group ${value !== '' ? 'active' : ''}`;
   }
 
-  handleSubmit = async (evt) => {
-    evt.preventDefault();
+  handleSignupOrLogin = async (evt) => {
     try {
       const {name, email, password} = this.state;
       const formData = {name, email, password};
       const user = await signUp(formData);
       this.props.setUser(user);
+      // redirect to home
+      window.location.href ='/home';
     } catch {
       this.setState({ error: 'Sign Up Failed - Try Again' });
     } 
+  };
+
+  handleSubmit= async (evt) => {
+    evt.preventDefault();
+    this.handleSignupOrLogin();
   };
 
   render() {

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import SignUpForm from '../../components/SignUpForm/SignUpForm';
 import LogInForm from '../../components/LogInForm/LogInForm';
 import AuthVideo from '../../components/AuthVideo/AuthVideo';
@@ -6,6 +7,11 @@ import './AuthPage.css';
 
 export default function AuthPage({ setUser }) {
   const [activeTab, setActiveTab] = useState('login');
+  let navigate = useNavigate();
+
+  async function handleSignupOrLogin() {
+    navigate('/home');
+  }
 
   function handleTabClick(tab) {
     setActiveTab(tab);
@@ -36,9 +42,9 @@ export default function AuthPage({ setUser }) {
             </div>
             
             { activeTab === 'signup' ?
-                <SignUpForm setUser={setUser} />
+                <SignUpForm setUser={setUser} handleSignupOrLogin={handleSignupOrLogin} />
                 :
-                <LogInForm setUser={setUser} />
+                <LogInForm setUser={setUser} handleSignupOrLogin={handleSignupOrLogin} />
             }
           </div>
         </div>

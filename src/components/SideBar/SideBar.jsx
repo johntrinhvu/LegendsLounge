@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import * as userService from '../../utilities/users-service';
-import { AiOutlineHome, AiOutlineNodeCollapse } from 'react-icons/ai';
+import { AiOutlineHome } from 'react-icons/ai';
 import { BiLogOut } from 'react-icons/bi';
 import './SideBar.css';
 
@@ -25,12 +25,12 @@ export default function SideBar({ user, setUser }) {
   return (
     <>
         <section className="sidebar">
-            <Link to="/" className="brand">
+            <Link to="/home" className="brand">
                 <span className="sidebar-legends-lounge">LEGENDS LOUNGE</span>
             </Link>
             <ul className="side-menu top">
                 <li className={getSidebarClassName('home')}>
-                    <Link to="/" className="sidebar-home" onClick={() => handleSidebarClick('home')}>
+                    <Link to="/home" className="sidebar-home" onClick={() => handleSidebarClick('home')}>
                         <AiOutlineHome className="home-icon"/>
                         <span className="sidebar-text">Home</span>
                     </Link>

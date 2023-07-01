@@ -47,6 +47,7 @@
     position: absolute;
     left: 540px;
     bottom: 10px;
+    
 }
   
 .nav-search-input {
@@ -63,6 +64,12 @@
     width: 250px;
 }
 
+/* Clears the X button */
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration { display: none; }
+
 .user-profile-name {
     color: white;
     display: flex;
@@ -73,4 +80,29 @@
 .user-icon {
     margin-top: 3px;
     margin-right: 5px;
+}
+
+.add-post-button {
+    margin-left: 15px;
+    margin-top: -3px;
+}
+
+.new-post-hyperlink:hover {
+    color: rgb(232, 207, 16);
+}
+
+.new-post-button {
+    color: white;
+    margin-top: 5px;
+}
+
+.new-post-hyperlink {
+    text-decoration: none;
+    color: white;
+}
+
+.new-post-text {
+    position: relative;
+    padding: 2px;
+    top: -2px;
 }

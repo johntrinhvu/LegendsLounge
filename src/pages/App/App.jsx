@@ -8,6 +8,8 @@ import JunglePage from '../JunglePage/JunglePage';
 import MidPage from '../MidPage/MidPage';
 import ADCPage from '../ADCPage/ADCPage';
 import SupportPage from '../SupportPage/SupportPage';
+import HomePage from '../HomePage/HomePage';
+import WelcomePage from '../WelcomePage/WelcomePage';
 import NavBar from '../../components/NavBar/NavBar';
 import SideBar from '../../components/SideBar/SideBar';
 import './App.css';
@@ -24,6 +26,7 @@ export default function App() {
             <NavBar user={user} setUser={setUser} />
             <Routes>
               {/* Route components in here */}
+              <Route path="/home" element={<HomePage />} />
               <Route path="/post/new" element={<NewPostPage />} />
               <Route path="/top" element={<TopPage />} />
               <Route path="/jungle" element={<JunglePage />}></Route>
@@ -34,17 +37,7 @@ export default function App() {
           </>
       ) : (
         <Routes>
-          <Route
-            path="/"
-            element={
-              <div className="MainPage">
-                <h1>Welcome to My App!</h1>
-                <p>
-                  Click <Link to="/credentials">here</Link> to sign up.
-                </p>
-              </div>
-            }
-          />
+          <Route path="/" element={<WelcomePage />}></Route>
           <Route path="/credentials" element={<AuthPage setUser={setUser} />} />
         </Routes>
       )}
