@@ -1,3 +1,53 @@
-.welcome {
-    font-size: 16px;
+.welcome-page-main {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.legends-lounge-welcome {
+    font-family: 'Beaufort for LOL';
+    font-size: 54px;
+    color: rgb(232, 207, 16);
+    font-weight: bold;
+    letter-spacing: 6px;
+}
+
+
+
+.continue-header {
+    margin-top: -30px;
+    font-size: 20px;
+    letter-spacing: 1px;
+}
+
+.continue-paragraph {
+    margin-top: -20px;
+    /* font-weight: */
+}
+
+
+.login-signup-welcome-button {
+    width: 180px;
+    padding: 10px 0;
+    text-align: center;
+    margin: 20px 10px;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 17px;
+    background: rgb(137, 106, 36);
+    cursor: pointer;
+    color: white;
+    line-height: 30px;
+}
+
+.login-signup-welcome-button:hover {
+    background-color: rgb(232, 207, 16);
+    transition: 0.2s ease;
+
 }
