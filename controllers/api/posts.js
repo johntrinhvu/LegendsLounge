@@ -7,14 +7,14 @@ module.exports = {
 async function create(req, res) {
     console.log(req.body); // Log the request payload
     const { category, title, content } = req.body;
-    const { _id, name } = req.user;
+    const { name, _id } = req.user;
 
     try {
       const newPost = await Post.create({ 
         category: category,
         title: title,
         content: content,
-        user: { _id, name }
+        user: { name, _id }
       });
       res.json(newPost);
 
@@ -23,5 +23,3 @@ async function create(req, res) {
       res.status(500).json({ message: 'Error creating post' });
     }
 }
-    // const post = await Post.create({ text: req.body.text })
-    // res.json(post)

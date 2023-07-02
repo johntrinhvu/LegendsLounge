@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import { getUser } from '../../utilities/users-service';
 import AuthPage from '../AuthPage/AuthPage';
 import NewPostPage from '../NewPostPage/NewPostPage';
+import PostPage from '../PostPage/PostPage';
 import TopPage from '../TopPage/TopPage';
 import JunglePage from '../JunglePage/JunglePage';
 import MidPage from '../MidPage/MidPage';
@@ -29,13 +30,14 @@ export default function App() {
               <div className="centered-content">
                 <Routes>
                   {/* Route components in here */}
-                  <Route path="/home" element={<HomePage />} />
+                  <Route path="/home" element={<HomePage user={user} />} />
                   <Route path="/posts/new" element={<NewPostPage user={user} />} />
-                  <Route path="/top" element={<TopPage />} />
-                  <Route path="/jungle" element={<JunglePage />}></Route>
-                  <Route path="/mid" element={<MidPage />}></Route>
-                  <Route path="/adc" element={<ADCPage />}></Route>
-                  <Route path="/support" element={<SupportPage />}></Route>
+                  <Route path="/posts/:postId" element={<PostPage user={user} />}></Route>
+                  <Route path="/top" element={<TopPage user={user} />} />
+                  <Route path="/jungle" element={<JunglePage user={user} />}></Route>
+                  <Route path="/mid" element={<MidPage user={user} />}></Route>
+                  <Route path="/adc" element={<ADCPage user={user} />}></Route>
+                  <Route path="/support" element={<SupportPage user={user} />}></Route>
                 </Routes>
               </div>
             </div>

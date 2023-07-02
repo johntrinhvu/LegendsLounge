@@ -1,13 +1,14 @@
 import { Component } from 'react';
 import * as postsAPI from '../../utilities/posts-api';
 
-export default class SignUpForm extends Component {
+export default class NewPostForm extends Component {
   state = {
     category: '',
     title: '',
     content: '',
     user: this.props.user,
-    error: ''
+    error: '',
+    createdPost: null
   };
 
   handleChange = (evt) => {
@@ -26,19 +27,20 @@ export default class SignUpForm extends Component {
           category, 
           title, 
           content, 
-          user: {
-            name: user.name,
-            _id: user._id
-          } 
+          user
         };
-        await postsAPI.createPost(postData);
+
+        const createdPost = await postsAPI.createPost(postData);
+        // console.log(createdPost);
+        // console.log(createdPost.uniqueId);
 
         this.setState({
             category: '',
             title: '',
             content: '',
-            error: ''
+            error: '',
         });
+
 
     } catch (error) {
         this.setState({ error: 'Creating post failed - Try Again' });
@@ -47,7 +49,7 @@ export default class SignUpForm extends Component {
   };
 
   render() {
-    const { category, title, content } = this.state;
+    const { category, title, content, createdPost } = this.state;
 
     return (
         <div className="new-post-form-container">
@@ -72,6 +74,15 @@ export default class SignUpForm extends Component {
                     <button type="submit" className="create-post-btn">Create your post</button>
                 </div>
             </form>
+            {createdPost && (
+              <div className="created-post">
+                <h3>Created Post:</h3>
+                <p>Category: {createdPost.category}</p>
+                <p>Title: {createdPost.title}</p>
+                <p>Content: {createdPost.content}</p>
+              </div>
+            )}
+
         </div>
     );
   }
