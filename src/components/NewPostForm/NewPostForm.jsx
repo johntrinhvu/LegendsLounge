@@ -1,6 +1,5 @@
 import { Component } from 'react';
 import * as postsAPI from '../../utilities/posts-api';
-import { useNavigate } from 'react-router-dom';
  
 export default class NewPostForm extends Component {
   state = {
@@ -34,7 +33,7 @@ export default class NewPostForm extends Component {
         const createdPost = await postsAPI.createPost(postData);
         console.log(createdPost);
         // redirect to created post page
-        window.location.href = `/posts/${createdPost.uniqueId}`;
+        window.location.href = `/posts/${createdPost._id}`;
         
         this.setState({
           category: '',

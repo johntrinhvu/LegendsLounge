@@ -8,11 +8,9 @@ module.exports = {
 async function create(req, res) {
     const { category, title, content } = req.body;
     const { name, _id } = req.user;
-    const postId = req.uniqueId;
 
     try {
       const newPost = await Post.create({ 
-        uniqueId: postId,
         category: category,
         title: title,
         content: content,
@@ -32,7 +30,7 @@ async function create(req, res) {
 async function getPostById(req, res) {
     try {
         const postId = req.params.postId;
-        const post = await Post.findById(postId);
+        const post = await Post.findById(postId).populate('user').exec();
 
         // if there is no post with that id
         if (!post) {

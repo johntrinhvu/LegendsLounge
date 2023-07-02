@@ -2,12 +2,6 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const postSchema = new Schema({
-    uniqueId: {
-        type: Schema.Types.ObjectId,
-        default: mongoose.Types.ObjectId,
-        unique: true,
-        required: true
-    },
     category: {
         type: String,
         required: true

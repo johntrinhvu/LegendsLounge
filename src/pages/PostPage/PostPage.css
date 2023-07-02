@@ -2,3 +2,153 @@
     color: white;
     font-size: 36px;
 }
+
+.post-on-postpage {
+    color: white;
+    margin-top: 6vmin;
+    background-color: rgb(32, 46, 81);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+  
+.postedBy-postpage-div {
+    display: flex;
+    align-items: center;
+    margin-top: -22px;
+    padding: 10px;
+}
+
+.postpage-buttons {
+    display: flex;
+    align-self: flex-start;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+.vertical-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2px;
+    margin-left: 5px;
+    margin-top: 2px;
+}
+
+.vertical-buttons button {
+    margin-bottom: 5px;
+}
+
+.like-button,
+.dislike-button {
+    color: rgb(116, 116, 117);
+    font-size: 18px;
+    background: transparent;
+    border: transparent;
+    cursor: pointer;
+    position: relative;
+}
+
+.like-button.liked {
+    color: rgb(255, 221, 0);
+}
+
+.dislike-button.disliked {
+    color: rgb(201, 91, 91);
+}
+
+.like-button::before,
+.dislike-button::before {
+    content: attr(title); /* Use the title attribute as content for the tooltip */
+    position: absolute;
+    top: -30px; /* Adjust the top position of the tooltip */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    white-space: nowrap;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s, opacity 0.3s;
+}
+
+.like-button:hover::before,
+.dislike-button:hover::before {
+    visibility: visible;
+    opacity: 1;
+}
+
+.dislike-button::before {
+    top: auto;
+    bottom: -30px;
+}
+  
+.post-page-rest-of-post {
+    flex-direction: column;
+    margin-top: -4px;
+
+}
+
+.post-page-category {
+    margin-right: 10px; 
+}
+  
+  /* .user {
+  } */
+  
+.post-page-title {
+    margin: 0;
+    padding: 10px;
+    margin-top: -35px;
+}
+
+.post-page-content {
+    margin: 0;
+    padding: 10px;
+    margin-top: -10px;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+.edit-options {
+    margin-top: 10px; /* Adjust margin for spacing */
+}
+
+.edit-button-postpage {
+    color: rgb(116, 116, 117);
+    font-size: 18px;
+    background: transparent;
+    border: transparent;
+    cursor: pointer;
+    margin-top: -5px;
+    margin-right: -10px;
+    margin-left: 4px;
+    margin-bottom: 5px;
+    position: relative;
+}
+
+.edit-button-postpage::before {
+    content: attr(title); /* Use the title attribute as content for the tooltip */
+    position: absolute;
+    top: -30px; /* Adjust the top position of the tooltip */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    white-space: nowrap;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s, opacity 0.3s;
+}
+
+.edit-button-postpage:hover::before {
+    visibility: visible;
+    opacity: 1;
+}

@@ -8,6 +8,6 @@ const postsCtrl = require('../../controllers/api/posts');
 router.post('/new', postsCtrl.create);
 
 // GET /posts/:postId
-router.get('/posts/:postId', postsCtrl.getPostById);
+router.get('/:postId', postsCtrl.getPostById);
 
 module.exports = router;
