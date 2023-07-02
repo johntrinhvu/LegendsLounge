@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import * as postsAPI from '../../utilities/posts-api';
-
+import { useNavigate } from 'react-router-dom';
+ 
 export default class NewPostForm extends Component {
   state = {
     category: '',
@@ -31,16 +32,17 @@ export default class NewPostForm extends Component {
         };
 
         const createdPost = await postsAPI.createPost(postData);
-        // console.log(createdPost);
-        // console.log(createdPost.uniqueId);
-
+        console.log(createdPost);
+        // redirect to created post page
+        window.location.href = `/posts/${createdPost.uniqueId}`;
+        
         this.setState({
-            category: '',
-            title: '',
-            content: '',
-            error: '',
+          category: '',
+          title: '',
+          content: '',
+          error: '',
         });
-
+        
 
     } catch (error) {
         this.setState({ error: 'Creating post failed - Try Again' });

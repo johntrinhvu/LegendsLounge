@@ -7,4 +7,7 @@ const postsCtrl = require('../../controllers/api/posts');
 // POST /api/posts/new
 router.post('/new', postsCtrl.create);
 
+// GET /posts/:postId
+router.get('/posts/:postId', postsCtrl.getPostById);
+
 module.exports = router;
