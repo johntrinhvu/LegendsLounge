@@ -16,3 +16,13 @@ export async function updatePost(postId) {
 export async function deletePost(postId) {
   return sendRequest(`${BASE_URL}/${postId}`, 'GET');
 }
+
+export async function fetchPosts() {
+  try {
+    const posts = await sendRequest(BASE_URL, 'GET');
+    return posts;
+    
+  } catch (error) {
+    throw new Error('Failed to fetch posts');
+  }
+}
