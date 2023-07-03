@@ -32,7 +32,7 @@ export default function App() {
                   {/* Route components in here */}
                   <Route path="/home" element={<HomePage user={user} />} />
                   <Route path="/posts/new" element={<NewPostPage user={user} />} />
-                  <Route path="/posts/:postId" element={<PostPage user={user} />}></Route>
+                  <Route path="/posts/:postId" element={<PostPage user={user} />} />
                   <Route path="/top" element={<TopPage user={user} />} />
                   <Route path="/jungle" element={<JunglePage user={user} />}></Route>
                   <Route path="/mid" element={<MidPage user={user} />}></Route>

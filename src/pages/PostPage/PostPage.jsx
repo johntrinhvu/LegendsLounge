@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { getUser } from '../../utilities/users-service';
+import EditPostForm from '../../components/EditPostForm/EditPostForm';
 import * as postsAPI from '../../utilities/posts-api';
 import { PiArrowFatUpBold, PiArrowFatDownBold } from 'react-icons/pi';
 import { AiOutlineEdit } from 'react-icons/ai';
@@ -8,15 +10,20 @@ import './PostPage.css';
 export default function PostPage() {
     const { postId } = useParams();
     const [post, setPost] = useState(null);
-    const [showEditOptions, setShowEditOptions] = useState(false);
+    const [editing, setEditing] = useState(false);
+    // const [showEditOptions, setShowEditOptions] = useState(false);
     const [likeClicked, setLikeClicked] = useState(false);
     const [dislikeClicked, setDislikeClicked] = useState(false);
+    const currentUser = getUser()._id;
+    const postUserId = post?.user._id;
+    const [originalPost, setOriginalPost] = useState(null);
 
     useEffect(() => {
         async function fetchPost() {
           try {
             const fetchedPost = await postsAPI.fetchPostById(postId);
             setPost(fetchedPost);
+            setOriginalPost(fetchedPost);
           } catch (error) {
             console.error(error);
           }
@@ -38,16 +45,34 @@ export default function PostPage() {
     };
 
     const handleEdit = () => {
-        setShowEditOptions(!showEditOptions);
+        if (currentUser === postUserId) {
+            // setShowEditOptions(!showEditOptions);
+            setEditing(!editing);
+        } else {
+            console.log('Unauthorized to edit this post.');
+        }
     };
 
-    const handleDelete = () => {
+    const handleCancel = () => {
+        setEditing(false);
+        setPost(originalPost);
+    }
 
+    const updatePost = async (updatedPost) => {
+        try {
+            const updated = await postsAPI.updatePost(updatedPost);
+            setPost(updated);
+            setEditing(false);
+          } catch (error) {
+            console.error(error);
+          }
     };
 
     if (!post) {
         return <h3 className="Loading-post-page">Loading...</h3>;  
     }
+
+    console.log(`currentUserId = ${currentUser}, postUserId = ${postUserId}`);
 
     return (
         <div className="post-page">
@@ -62,15 +87,22 @@ export default function PostPage() {
                         </button>
                     </div>
                 </div>
+
+                {/* Display content/input fields based on editing state */}
+                {editing ? (
+                    <EditPostForm post={post} updatePost={updatePost} handleCancel={handleCancel} />
+            ) : (
                 <div className="post-page-rest-of-post">
                     <div className="postedBy-postpage-div">
                         <h6 className="post-page-category">{`/${post.category}`}</h6>
                         <h6 className="post-page-user">{`Posted by: ${post.user.name}`}</h6>
-                        <div className="edit-options">
-                            <button onClick={handleEdit} className="edit-button-postpage" title="Edit">
-                                {<AiOutlineEdit />}
-                            </button>
-                        </div>
+                        {currentUser === postUserId && (
+                            <div className="edit-options">
+                                <button onClick={handleEdit} className="edit-button-postpage" title="Edit">
+                                    {<AiOutlineEdit />}
+                                </button>
+                            </div>
+                        )}
                     </div>
                     <div className="postpage-title-div">
                         <h3 className="post-page-title">{post.title}</h3>
@@ -79,6 +111,7 @@ export default function PostPage() {
                         <p className="post-page-content">{post.content}</p>
                     </div>
                 </div>
+            )}
             </div>
         </div>
     );

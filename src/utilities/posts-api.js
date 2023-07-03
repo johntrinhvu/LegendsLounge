@@ -8,3 +8,11 @@ export async function createPost(postData) {
 export async function fetchPostById(postId) {
   return sendRequest(`${BASE_URL}/${postId}`, 'GET');
 }
+
+export async function updatePost(postId) {
+  return sendRequest(`${BASE_URL}/${postId}`, 'GET');
+}
+
+export async function deletePost(postId) {
+  return sendRequest(`${BASE_URL}/${postId}`, 'GET');
+}
