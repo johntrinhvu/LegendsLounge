@@ -26,3 +26,13 @@ export async function fetchPosts() {
     throw new Error('Failed to fetch posts');
   }
 }
+
+export async function fetchPostsByCategory(category) {
+  try {
+    const posts = await sendRequest(`${BASE_URL}/category/${category}`, 'GET');
+    return posts;
+
+  } catch(error) {
+    throw new Error('Failed to fetch posts');
+  }
+}

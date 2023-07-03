@@ -4,11 +4,7 @@ import { getUser } from '../../utilities/users-service';
 import AuthPage from '../AuthPage/AuthPage';
 import NewPostPage from '../NewPostPage/NewPostPage';
 import PostPage from '../PostPage/PostPage';
-import TopPage from '../TopPage/TopPage';
-import JunglePage from '../JunglePage/JunglePage';
-import MidPage from '../MidPage/MidPage';
-import ADCPage from '../ADCPage/ADCPage';
-import SupportPage from '../SupportPage/SupportPage';
+import CategoryPage from '../CategoryPage/CategoryPage';
 import HomePage from '../HomePage/HomePage';
 import WelcomePage from '../WelcomePage/WelcomePage';
 import NavBar from '../../components/NavBar/NavBar';
@@ -33,11 +29,7 @@ export default function App() {
                   <Route path="/home" element={<HomePage user={user} />} />
                   <Route path="/posts/new" element={<NewPostPage user={user} />} />
                   <Route path="/posts/:postId" element={<PostPage user={user} />} />
-                  <Route path="/top" element={<TopPage user={user} />} />
-                  <Route path="/jungle" element={<JunglePage user={user} />}></Route>
-                  <Route path="/mid" element={<MidPage user={user} />}></Route>
-                  <Route path="/adc" element={<ADCPage user={user} />}></Route>
-                  <Route path="/support" element={<SupportPage user={user} />}></Route>
+                  <Route path="/posts/category/:category" element={<CategoryPage user={user} />} />
                 </Routes>
               </div>
             </div>

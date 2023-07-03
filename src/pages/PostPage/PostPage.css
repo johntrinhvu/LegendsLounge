@@ -62,7 +62,8 @@
 
 .like-button::before,
 .dislike-button::before,
-.delete-post-button:before {
+.delete-post-button::before,
+.edit-button-postpage::before {
     content: attr(title); /* Use the title attribute as content for the tooltip */
     position: absolute;
     top: -30px; /* Adjust the top position of the tooltip */
@@ -81,7 +82,8 @@
 
 .like-button:hover::before,
 .dislike-button:hover::before,
-.delete-post-button:hover::before {
+.delete-post-button:hover::before,
+.edit-button-postpage:hover::before {
     visibility: visible;
     opacity: 1;
 }

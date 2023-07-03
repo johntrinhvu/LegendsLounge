@@ -3,7 +3,8 @@ const Post = require('../../models/post');
 module.exports = {
   create,
   getPostById,
-  fetchPosts
+  fetchPosts,
+  fetchPostsByCategory,
 };
 
 async function create(req, res) {
@@ -65,4 +66,21 @@ async function fetchPosts(req, res) {
         console.error('Failed to fetch posts:', error);
         res.status(500).json({ error: 'Failed to fetch posts' });
       }
+}
+
+async function fetchPostsByCategory(req, res) {
+    try {
+        const category = req.params.category;
+
+        // fetch post from db
+        const posts = await Post.find({ category }).populate('user').exec();
+        
+        // send posts in response
+        res.json(posts);
+
+    } catch (error) {
+        console.error('Failed to fecth posts by category: ', error);
+        res.status(500).json({ error: 'Failed to fetch posts by category' });
+    }
+
 }

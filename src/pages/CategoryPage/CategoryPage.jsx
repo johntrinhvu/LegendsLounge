@@ -1,50 +1,51 @@
 import { useEffect, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import * as postsAPI from '../../utilities/posts-api';
+import { Link } from 'react-router-dom';
+import { useParams } from 'react-router';
 import { PiArrowFatUpBold, PiArrowFatDownBold } from 'react-icons/pi';
-import './HomePage.css';
+import * as postsAPI from '../../utilities/posts-api';
 
-export default function HomePage() {
-    const [posts, setPosts] = useState([]);
-    const [error, setError] = useState(null);
-    const [likeClicked, setLikeClicked] = useState(false);
-    const [dislikeClicked, setDislikeClicked] = useState(false);
-    const location = useLocation();
+export default function ADCPage() {
+  const [posts, setPosts] = useState([]);
+  const { category } = useParams();
+  const [error, setError] = useState(null);
+  const [likeClicked, setLikeClicked] = useState(false);
+  const [dislikeClicked, setDislikeClicked] = useState(false);
 
-    useEffect(() => {
-        const fetchPosts = async () => {
-        try {
-            if (location.pathname === '/home') {
-                const fetchedPosts = await postsAPI.fetchPosts();
-                setPosts(fetchedPosts);
-            }
-        } catch (error) {
-            console.error(error);
-            setError('Failed to fetch posts');
-        }
-        };
+  useEffect(() => {
+    const fetchPosts = async () => {
+    try {
+        const fetchedPosts = await postsAPI.fetchPostsByCategory(category);
+        setPosts(fetchedPosts);
 
-        fetchPosts();
-    }, [location.pathname]);
-
-    const handleLike = () => {
-        setLikeClicked(!likeClicked);
-        setDislikeClicked(false);
-    };
-
-    const handleDislike = () => {
-        setDislikeClicked(!dislikeClicked);
-        setLikeClicked(false);
-    };
-
-    if (error) {
-        return <div>Error: {error}</div>;
+    } catch (error) {
+        console.error(error);
     }
+    };
 
-    return (
-        <div className="home-page">
-            <h1 className="home-page-header">Home Page</h1>
-            {posts.map((post) => (
+    fetchPosts();
+  }, [category]);
+
+  const handleLike = () => {
+    setLikeClicked(!likeClicked);
+    setDislikeClicked(false);
+  };
+
+  const handleDislike = () => {
+      setDislikeClicked(!dislikeClicked);
+      setLikeClicked(false);
+  };
+
+  if (error) {
+      return <div>Error: {error}</div>;
+  }
+
+  return (
+      <div className="home-page">
+          <h1 className="home-page-header">{`Welcome to /posts/category/${category}`}</h1>
+          {posts.length === 0 ? (
+            <div>Loading...</div>
+          ) : (
+            posts.map((post) => (
                 <Link to={`/posts/${post._id}`} key={post._id} className="post-link">
                     <div className="post-page">
                         <div className="post-on-postpage">
@@ -74,7 +75,8 @@ export default function HomePage() {
                         </div>
                     </div>
                 </Link>
-            ))}
-        </div>
-    );
+              ))
+          )}
+      </div>
+  );
 }

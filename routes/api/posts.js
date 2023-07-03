@@ -10,6 +10,9 @@ router.post('/new', postsCtrl.create);
 // GET /api/posts
 router.get('/', postsCtrl.fetchPosts);
 
+// GET /api/posts/category/:category
+router.get('/category/:category', postsCtrl.fetchPostsByCategory);
+
 // GET /posts/:postId
 router.get('/:postId', postsCtrl.getPostById);
 

@@ -73,6 +73,7 @@ export default class NewPostForm extends Component {
                       <label className="edit-category">Category: </label>
                     </div>
                       <select name="category" value={category} onChange={this.handleChange} required className="edit-category-option">
+                          <option value="">Choose a category</option>
                           <option value="top">Top Lane</option>
                           <option value="jungle">Jungle</option>
                           <option value="mid">Mid Lane</option>
