@@ -3,11 +3,14 @@ import { BiTrash } from 'react-icons/bi';
 import * as postsAPI from '../../utilities/posts-api';
 
 export default class EditPostForm extends Component {
+
+
   state = {
     editedPost: {
       category: this.props.post.category,
       title: this.props.post.title,
       content: this.props.post.content,
+      id: this.props.post._id
     },
     titleHeight: 'auto',
     contentHeight: 'auto',

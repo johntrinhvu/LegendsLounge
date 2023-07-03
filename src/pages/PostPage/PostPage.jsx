@@ -11,7 +11,6 @@ export default function PostPage() {
     const { postId } = useParams();
     const [post, setPost] = useState(null);
     const [editing, setEditing] = useState(false);
-    // const [showEditOptions, setShowEditOptions] = useState(false);
     const [likeClicked, setLikeClicked] = useState(false);
     const [dislikeClicked, setDislikeClicked] = useState(false);
     const currentUser = getUser()._id;
@@ -46,7 +45,6 @@ export default function PostPage() {
 
     const handleEdit = () => {
         if (currentUser === postUserId) {
-            // setShowEditOptions(!showEditOptions);
             setEditing(!editing);
         } else {
             console.log('Unauthorized to edit this post.');
@@ -60,19 +58,31 @@ export default function PostPage() {
 
     const updatePost = async (updatedPost) => {
         try {
-            const updated = await postsAPI.updatePost(updatedPost);
-            setPost(updated);
             setEditing(false);
+            setPost({...post, category: updatedPost.category, title: updatedPost.title, content: updatedPost.content });
           } catch (error) {
             console.error(error);
           }
     };
+    
+    const createdAtDate = post?.createdAt ? new Date(post.createdAt) : null;
+    const formattedDate = createdAtDate ? createdAtDate.toLocaleDateString('en-US', {
+        month: '2-digit',
+        day: '2-digit',
+        year: 'numeric',
+    }) : null;
+    const formattedTime = createdAtDate ? createdAtDate.toLocaleTimeString('en-US', {
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: true,
+    }) : null;
 
     if (!post) {
         return <h3 className="Loading-post-page">Loading...</h3>;  
     }
 
-    console.log(`currentUserId = ${currentUser}, postUserId = ${postUserId}`);
+    // testing to see if the userId and postId match
+    // console.log(`currentUserId = ${currentUser}, postUserId = ${postUserId}`);
 
     return (
         <div className="post-page">
@@ -103,6 +113,9 @@ export default function PostPage() {
                                 </button>
                             </div>
                         )}
+                    </div>
+                    <div className="post-page-created-div">
+                        <h6 className="post-page-created-at">{`Created: ${formattedDate} at ${formattedTime}`}</h6>
                     </div>
                     <div className="postpage-title-div">
                         <h3 className="post-page-title">{post.title}</h3>

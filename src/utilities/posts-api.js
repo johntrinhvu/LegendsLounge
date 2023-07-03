@@ -9,8 +9,14 @@ export async function fetchPostById(postId) {
   return sendRequest(`${BASE_URL}/${postId}`, 'GET');
 }
 
-export async function updatePost(postId) {
-  return sendRequest(`${BASE_URL}/${postId}`, 'GET');
+export async function updatePost(updatedPost) {
+  try {
+    const updated = sendRequest(`${BASE_URL}/${updatedPost.id}`, 'PUT', updatedPost, true);
+    return updated;
+    
+  } catch (error) {
+    throw new Error('Failed to update the post');
+  }
 }
 
 export async function deletePost(postId) {

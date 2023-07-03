@@ -16,4 +16,7 @@ router.get('/category/:category', postsCtrl.fetchPostsByCategory);
 // GET /posts/:postId
 router.get('/:postId', postsCtrl.getPostById);
 
+// PUT /api/posts/:postId
+router.put('/:postId', postsCtrl.updatePost);
+
 module.exports = router;

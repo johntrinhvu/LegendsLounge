@@ -15,10 +15,12 @@ export default function ADCPage() {
     const fetchPosts = async () => {
     try {
         const fetchedPosts = await postsAPI.fetchPostsByCategory(category);
-        setPosts(fetchedPosts);
+        const sortedPosts = fetchedPosts.sort((a, b) => b._id.localeCompare(a._id));
+        setPosts(sortedPosts);
 
     } catch (error) {
         console.error(error);
+        setError('Failed to fetch posts');
     }
     };
 
@@ -41,41 +43,57 @@ export default function ADCPage() {
 
   return (
       <div className="home-page">
-          <h1 className="home-page-header">{`Welcome to /posts/category/${category}`}</h1>
+          <h1 className="home-page-header">{`welcome to /${category}`}</h1>
           {posts.length === 0 ? (
             <div>Loading...</div>
           ) : (
-            posts.map((post) => (
-                <Link to={`/posts/${post._id}`} key={post._id} className="post-link">
-                    <div className="post-page">
-                        <div className="post-on-postpage">
-                            <div className="postpage-buttons">
-                                <div className="vertical-buttons">
-                                    <button onClick={handleLike} className={`like-button ${likeClicked ? 'liked' : ''}`} title="Like">
-                                        {likeClicked ? <PiArrowFatUpBold className="liked-icon" /> : <PiArrowFatUpBold />}
-                                    </button>
-                                    <button onClick={handleDislike} className={`dislike-button ${dislikeClicked ? 'disliked' : ''}`} title="Dislike">
-                                        {dislikeClicked ? <PiArrowFatDownBold className="disliked-icon" /> : <PiArrowFatDownBold />}
-                                    </button>
+            posts.map((post) => {
+                const createdAtDate = new Date(post.createdAt);
+                const formattedDate = createdAtDate.toLocaleDateString('en-US', {
+                    month: '2-digit',
+                    day: '2-digit',
+                    year: 'numeric',
+                });
+                const formattedTime = createdAtDate.toLocaleTimeString('en-US', {
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    hour12: true,
+                });
+
+                return (
+                    <Link to={`/posts/${post._id}`} key={post._id} className="post-link">
+                        <div className="post-page">
+                            <div className="post-on-postpage">
+                                <div className="postpage-buttons">
+                                    <div className="vertical-buttons">
+                                        <button onClick={handleLike} className={`like-button ${likeClicked ? 'liked' : ''}`} title="Like">
+                                            {likeClicked ? <PiArrowFatUpBold className="liked-icon" /> : <PiArrowFatUpBold />}
+                                        </button>
+                                        <button onClick={handleDislike} className={`dislike-button ${dislikeClicked ? 'disliked' : ''}`} title="Dislike">
+                                            {dislikeClicked ? <PiArrowFatDownBold className="disliked-icon" /> : <PiArrowFatDownBold />}
+                                        </button>
+                                    </div>
                                 </div>
-                            </div>
-                            <div className="post-page-rest-of-post">
-                                <div className="postedBy-postpage-div">
-                                    <h6 className="post-page-category">{`/${post.category}`}</h6>
-                                    <h6 className="post-page-user">{`Posted by: ${post.user.name}`}</h6>
-                                    
-                                </div>
-                                <div className="postpage-title-div">
-                                    <h3 className="post-page-title">{post.title}</h3>
-                                </div>
-                                <div className="postpage-content-div">
-                                    <p className="post-page-content">{post.content}</p>
+                                <div className="post-page-rest-of-post">
+                                    <div className="postedBy-postpage-div">
+                                        <h6 className="post-page-category">{`/${post.category}`}</h6>
+                                        <h6 className="post-page-user">{`Posted by: ${post.user.name}`}</h6>
+                                    </div>
+                                    <div className="post-page-created-div">
+                                        <h6 className="post-page-created-at">{`Created: ${formattedDate} at ${formattedTime}`}</h6>
+                                    </div>
+                                    <div className="postpage-title-div">
+                                        <h3 className="post-page-title">{post.title}</h3>
+                                    </div>
+                                    <div className="postpage-content-div">
+                                        <p className="post-page-content">{post.content}</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </Link>
-              ))
+                    </Link>
+              );
+            })
           )}
       </div>
   );

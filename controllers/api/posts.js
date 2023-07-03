@@ -5,6 +5,7 @@ module.exports = {
   getPostById,
   fetchPosts,
   fetchPostsByCategory,
+  updatePost,
 };
 
 async function create(req, res) {
@@ -52,15 +53,15 @@ async function getPostById(req, res) {
 async function fetchPosts(req, res) {
     try {
         // Fetch all posts from the database
-        const posts = await Post.find().populate('user').exec();
-
-        // checking to see if posts were there
-        // console.log(posts);
+        const posts = await Post
+        .find()
+        .populate('user')
+        .sort({ _id: -1 })
+        .exec();
     
         // Send the posts data in the response
         res.json(posts);
 
-        // console.log(posts);
       } catch (error) {
         // Handle any errors that occur during the process
         console.error('Failed to fetch posts:', error);
@@ -73,7 +74,11 @@ async function fetchPostsByCategory(req, res) {
         const category = req.params.category;
 
         // fetch post from db
-        const posts = await Post.find({ category }).populate('user').exec();
+        const posts = await Post
+        .find({ category })
+        .populate('user')
+        .sort({ _id: -1 })
+        .exec();
         
         // send posts in response
         res.json(posts);
@@ -83,4 +88,31 @@ async function fetchPostsByCategory(req, res) {
         res.status(500).json({ error: 'Failed to fetch posts by category' });
     }
 
+}
+
+async function updatePost(req, res) {
+    try {
+        const { postId } = req.params;
+        const { category, title, content } = req.body;
+    
+        // Find the post by ID
+        const post = await Post.findById(postId);
+    
+        if (!post) {
+          return res.status(404).json({ error: 'Post not found' });
+        }
+    
+        // Update the post fields
+        post.category = category;
+        post.title = title;
+        post.content = content;
+    
+        // Save the updated post
+        await post.save();
+    
+        res.json(post);
+      } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Failed to update the post' });
+      }
 }

@@ -16,7 +16,8 @@ export default function HomePage() {
         try {
             if (location.pathname === '/home') {
                 const fetchedPosts = await postsAPI.fetchPosts();
-                setPosts(fetchedPosts);
+                const sortedPosts = fetchedPosts.sort((a, b) => b.createdAt - a.createdAt);
+                setPosts(sortedPosts);
             }
         } catch (error) {
             console.error(error);
@@ -44,7 +45,20 @@ export default function HomePage() {
     return (
         <div className="home-page">
             <h1 className="home-page-header">Home Page</h1>
-            {posts.map((post) => (
+            {posts.map((post) => {
+                const createdAtDate = new Date(post.createdAt);
+                const formattedDate = createdAtDate.toLocaleDateString('en-US', {
+                    month: '2-digit',
+                    day: '2-digit',
+                    year: 'numeric',
+                });
+                const formattedTime = createdAtDate.toLocaleTimeString('en-US', {
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    hour12: true,
+                });
+            
+                return (
                 <Link to={`/posts/${post._id}`} key={post._id} className="post-link">
                     <div className="post-page">
                         <div className="post-on-postpage">
@@ -62,7 +76,9 @@ export default function HomePage() {
                                 <div className="postedBy-postpage-div">
                                     <h6 className="post-page-category">{`/${post.category}`}</h6>
                                     <h6 className="post-page-user">{`Posted by: ${post.user.name}`}</h6>
-                                    
+                                </div>
+                                <div className="post-page-created-div">
+                                    <h6 className="post-page-created-at">{`Created: ${formattedDate} at ${formattedTime}`}</h6>
                                 </div>
                                 <div className="postpage-title-div">
                                     <h3 className="post-page-title">{post.title}</h3>
@@ -74,7 +90,8 @@ export default function HomePage() {
                         </div>
                     </div>
                 </Link>
-            ))}
+            );
+            })};
         </div>
     );
 }
