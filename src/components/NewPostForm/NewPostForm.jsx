@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import React, { Component } from 'react';
 import * as postsAPI from '../../utilities/posts-api';
  
 export default class NewPostForm extends Component {
@@ -11,11 +11,17 @@ export default class NewPostForm extends Component {
     createdPost: null
   };
 
+  contentRef = React.createRef();
+
   handleChange = (evt) => {
     this.setState({
       [evt.target.name]: evt.target.value,
       error: ''
-    });
+    },
+    () => {
+        this.adjustElementSize(this.contentRef);  
+      }
+    );
   };
   
   handleSubmit = async (evt) => {
@@ -46,44 +52,68 @@ export default class NewPostForm extends Component {
     } catch (error) {
         this.setState({ error: 'Creating post failed - Try Again' });
     }
+  };
 
+  adjustElementSize = (ref) => {
+    const element = ref.current;
+    element.style.height = 'auto';
+    element.style.height = `${element.scrollHeight}px`;
   };
 
   render() {
-    const { category, title, content, createdPost } = this.state;
+    const { category, title, content } = this.state;
 
     return (
-        <div className="new-post-form-container">
-            <form onSubmit={this.handleSubmit} className="new-post-form">
-                <div className="new-post-form-group">
-                    <select name="category" value={category} onChange={this.handleChange} className="category-select">
-                        <option value="">Choose a category</option>
-                        <option value="top">Top Lane</option>
-                        <option value="jungle">Jungle</option>
-                        <option value="mid">Mid Lane</option>
-                        <option value="adc">ADC</option>
-                        <option value="support">Support</option>
-                    </select>
-                </div>
-                <div className="new-post-form-group">
-                    <input type="text" name="title" value={title} onChange={this.handleChange} required placeholder="Title" className="new-post-title" />
-                </div>
-                <div className="new-post-form-group">
-                    <textarea name="content" value={content} onChange={this.handleChange} required className="new-post-content" placeholder="Text" />
-                </div>
-                <div className="new-post-form-group">
-                    <button type="submit" className="create-post-btn">Create your post</button>
-                </div>
-            </form>
-            {createdPost && (
-              <div className="created-post">
-                <h3>Created Post:</h3>
-                <p>Category: {createdPost.category}</p>
-                <p>Title: {createdPost.title}</p>
-                <p>Content: {createdPost.content}</p>
-              </div>
-            )}
-
+        <div className="new-post-page">
+          <div className="new-post-on-postpage">
+            <div className="new-post-page-rest-of-post">
+              <form onSubmit={this.handleSubmit} className="new-post-form">
+                  <div className="edit-category-div">
+                    <div className="edit-field-category">
+                      <label className="edit-category">Category: </label>
+                    </div>
+                      <select name="category" value={category} onChange={this.handleChange} required className="edit-category-option">
+                          <option value="top">Top Lane</option>
+                          <option value="jungle">Jungle</option>
+                          <option value="mid">Mid Lane</option>
+                          <option value="adc">ADC</option>
+                          <option value="support">Support</option>
+                      </select>
+                  </div>
+                  <div className="edit-title-div">
+                    <div className="edit-field-title">
+                      <label className="edit-title">Title: </label>
+                    </div>
+                      <input 
+                        type="text" 
+                        name="title" 
+                        value={title} 
+                        onChange={this.handleChange} 
+                        required 
+                        placeholder="Title" 
+                        className="edit-title-text" 
+                      />
+                  </div>
+                  <div className="edit-content-div">
+                    <div className="edit-field-content">
+                      <label className="edit-content">Content: </label> 
+                    </div>
+                      <textarea 
+                        name="content" 
+                        value={content} 
+                        onChange={this.handleChange} 
+                        required 
+                        className="edit-content-text" 
+                        placeholder="Content" 
+                        ref={this.contentRef}
+                      />
+                  </div>
+                  <div className="new-post-form-group">
+                      <button type="submit" className="create-post-btn">Create your post</button>
+                  </div>
+              </form>
+            </div>
+          </div>
         </div>
     );
   }
