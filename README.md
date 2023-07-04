@@ -1,4 +1,4 @@
-# LegendsLounge
+# Legends Lounge
 ## A League of Legends Blogpost Forum
 ### Created by: John Vu
 
