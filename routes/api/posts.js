@@ -19,4 +19,6 @@ router.get('/:postId', postsCtrl.getPostById);
 // PUT /api/posts/:postId
 router.put('/:postId', postsCtrl.updatePost);
 
+router.delete('/:postId', postsCtrl.deletePost);
+
 module.exports = router;

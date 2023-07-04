@@ -6,7 +6,6 @@ import './HomePage.css';
 
 export default function HomePage() {
     const [posts, setPosts] = useState([]);
-    const [error, setError] = useState(null);
     const [likeClicked, setLikeClicked] = useState(false);
     const [dislikeClicked, setDislikeClicked] = useState(false);
     const location = useLocation();
@@ -21,7 +20,6 @@ export default function HomePage() {
             }
         } catch (error) {
             console.error(error);
-            setError('Failed to fetch posts');
         }
         };
 
@@ -38,13 +36,9 @@ export default function HomePage() {
         setLikeClicked(false);
     };
 
-    if (error) {
-        return <div>Error: {error}</div>;
-    }
-
     return (
         <div className="home-page">
-            <h1 className="home-page-header">Home Page</h1>
+            <h1 className="home-page-header">welcome to /home</h1>
             {posts.map((post) => {
                 const createdAtDate = new Date(post.createdAt);
                 const formattedDate = createdAtDate.toLocaleDateString('en-US', {

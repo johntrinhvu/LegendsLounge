@@ -57,6 +57,7 @@ export default function PostPage() {
     }
 
     const updatePost = async (updatedPost) => {
+        console.log(updatedPost);
         try {
             setEditing(false);
             setPost({...post, category: updatedPost.category, title: updatedPost.title, content: updatedPost.content });

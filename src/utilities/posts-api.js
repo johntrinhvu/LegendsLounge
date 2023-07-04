@@ -20,7 +20,7 @@ export async function updatePost(updatedPost) {
 }
 
 export async function deletePost(postId) {
-  return sendRequest(`${BASE_URL}/${postId}`, 'GET');
+  return sendRequest(`${BASE_URL}/${postId}`, 'DELETE');
 }
 
 export async function fetchPosts() {

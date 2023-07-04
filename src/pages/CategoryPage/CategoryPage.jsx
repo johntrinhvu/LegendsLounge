@@ -4,10 +4,9 @@ import { useParams } from 'react-router';
 import { PiArrowFatUpBold, PiArrowFatDownBold } from 'react-icons/pi';
 import * as postsAPI from '../../utilities/posts-api';
 
-export default function ADCPage() {
+export default function CategoryPage() {
   const [posts, setPosts] = useState([]);
   const { category } = useParams();
-  const [error, setError] = useState(null);
   const [likeClicked, setLikeClicked] = useState(false);
   const [dislikeClicked, setDislikeClicked] = useState(false);
 
@@ -20,7 +19,6 @@ export default function ADCPage() {
 
     } catch (error) {
         console.error(error);
-        setError('Failed to fetch posts');
     }
     };
 
@@ -37,15 +35,11 @@ export default function ADCPage() {
       setLikeClicked(false);
   };
 
-  if (error) {
-      return <div>Error: {error}</div>;
-  }
-
   return (
       <div className="home-page">
           <h1 className="home-page-header">{`welcome to /${category}`}</h1>
           {posts.length === 0 ? (
-            <div>Loading...</div>
+            <h3 className="Loading-post-page">Loading...</h3>
           ) : (
             posts.map((post) => {
                 const createdAtDate = new Date(post.createdAt);

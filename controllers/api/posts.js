@@ -6,6 +6,7 @@ module.exports = {
   fetchPosts,
   fetchPostsByCategory,
   updatePost,
+  deletePost
 };
 
 async function create(req, res) {
@@ -115,4 +116,28 @@ async function updatePost(req, res) {
         console.error(error);
         res.status(500).json({ error: 'Failed to update the post' });
       }
+}
+
+async function deletePost(req, res) {
+    const postId = req.params.postId;
+    try {
+        const post = await Post.findById(postId);
+
+        // if post not exist, send 404
+        if (!post) {
+            return res.status(404).json({ error: 'Post not found' });
+        }
+
+        // now, delete the post
+        await post.remove();
+        
+        // indicate successful delete
+        res.status(200).json({ message: 'Post has been deleted' });
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Failed to delete the post' });
+    }
+
+
 }
