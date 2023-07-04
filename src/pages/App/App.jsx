@@ -11,7 +11,6 @@ import NavBar from '../../components/NavBar/NavBar';
 import SideBar from '../../components/SideBar/SideBar';
 import './App.css';
 
-
 export default function App() {
   const [user, setUser] = useState(getUser());
 

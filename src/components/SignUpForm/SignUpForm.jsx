@@ -29,7 +29,7 @@ export default class SignUpForm extends Component {
       const user = await signUp(formData);
       this.props.setUser(user);
       // redirect to home
-      window.location.href ='/home';
+      window.location.href = '/home';
     } catch {
       this.setState({ error: 'Sign Up Failed - Try Again' });
     } 
