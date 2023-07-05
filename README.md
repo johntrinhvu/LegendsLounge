@@ -11,6 +11,14 @@ A blogpost forum specifically for League of Legends players, where players can p
 - React: A JavaScript library for building user interfaces.
 - Node.js: A JavaScript runtime used for building the server-side application.
 
+## Planning materials
+Below is a list of some planning materials that I used:
+[Trello](https://trello.com/invite/b/I5AJmZDy/ATTI9b942beecb2b651cbddfe2370a01ec690612AFD7/legendslounge)
+
+[Lucid](https://lucid.app/lucidchart/a7610040-97e8-4285-87fe-0d24291e7dcd/edit?viewport_l[…]C909%2C0_0&invitationId=inv_15b719f8-75fa-49e1-b352-1acdfd2d585e)
+
+[Figma](https://www.figma.com/file/0byxbJiTW3hSeXei68Nej5/Untitled?type=design&node-id=0%3A1&mode=design&t=L1OuRT8ifSrfTL7F-1)
+
 ## Key Features
 
 - User Registration and Authentication: Users can create an account and log in using JWT authentication.
