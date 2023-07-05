@@ -20,7 +20,17 @@ A blogpost forum specifically for League of Legends players, where players can p
 
 ## Screenshots
 
-You can find screenshots of the application in the [Screenshots](screenshots/) directory.
+### Welcome Page
+![WelcomePage](https://github.com/johntrinhvu/LegendsLounge/blob/main/public/screenshots/welcomePage.png)
+
+### Sign Up / Log In Page
+![SignupPage](https://github.com/johntrinhvu/LegendsLounge/blob/main/public/screenshots/signupPage.png)
+
+### Home Page
+![HomePage](https://github.com/johntrinhvu/LegendsLounge/blob/main/public/screenshots/homePage.png)
+
+### Example Category Page
+![CatPage](https://github.com/johntrinhvu/LegendsLounge/blob/main/public/screenshots/exCatPage.png)
 
 ## Usage
 
@@ -39,6 +49,8 @@ The application is deployed and can be accessed at [LegendsLounge](https://legen
 
 Contributions are welcome! If you find any issues or want to add new features, please open an issue or submit a pull request.
 
-## License
+## What I want to work on in the future (Icebox features)
 
-This project is licensed under me, John Vu.
+I would like to have a functioning search bar, functioning like and dislike buttons that are stored within the database, as well as making a new schema for comments and replies for comments underneath posts. Also, adding a League of Legends API for the future would not be bad, to capture real time data.
+
+
