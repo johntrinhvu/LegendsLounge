@@ -26,7 +26,12 @@ export default function SideBar({ user, setUser }) {
     <>
         <section className="sidebar">
             <Link to="/home" className="brand">
-                <span className="sidebar-legends-lounge">LEGENDS LOUNGE</span>
+                <span className="sidebar-legends">
+                    <h2>LEGENDS</h2>
+                </span>
+                <span className="sidebar-lounge">
+                    <h2>LOUNGE</h2>
+                </span>
             </Link>
             <ul className="side-menu top">
                 <li className={getSidebarClassName('home')}>
