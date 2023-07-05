@@ -48,7 +48,6 @@ Below is a list of some planning materials that I used:
 - Explore the different role-specific sections to view blogposts and comments.
 - Create a new blogpost by selecting the appropriate role and providing the necessary details.
 - Edit or delete your own blogposts.
-- Comment on blogposts to engage in discussions with other users.
 
 ## Website
 
