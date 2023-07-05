@@ -33,7 +33,7 @@ You can find screenshots of the application in the [Screenshots](screenshots/) d
 
 ## Website
 
-The application is deployed and can be accessed at [YourWebsiteURL](https://www.your-website-url.com).
+The application is deployed and can be accessed at [LegendsLounge](https://legendslounge-b82e25ecba3a.herokuapp.com/).
 
 ## Contributing
 
